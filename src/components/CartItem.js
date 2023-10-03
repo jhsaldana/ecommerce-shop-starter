@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 //import link
 import { Link } from 'react-router-dom';
 //import icons
 import { IoMdAdd, IoMdClose, IoMdRemove } from 'react-icons/io';
+//import cart context
+import { CartContext } from '../contexts/CartContext';
 
 const CartItem = ({ item }) => {
+  const { removeFromCart, increaseAmount, decreaseAmount } = useContext(CartContext)
   //destructure item
   const { id, title, image, price, amount } = item;
   return (
@@ -25,7 +28,7 @@ const CartItem = ({ item }) => {
             {title}
             </Link>
             {/* remove icons */}
-            <div className='text-xl cursor-pointer'>
+            <div onClick={()=> removeFromCart(id)} className='text-xl cursor-pointer'>
               <IoMdClose className=' text-gray-500 hover:text-red-500 transition' />
             </div>
         </div>
@@ -33,7 +36,7 @@ const CartItem = ({ item }) => {
         {/* quantity */}
         <div className='flex flex-1 max-w-[100px] items-center h-full border text-primary font-medium'>
           {/* minus icon. */}
-          <div className='flex-1 flex justify-center items-center cursor-pointer'>
+          <div onClick={()=> decreaseAmount(id)} className='flex-1 flex justify-center items-center cursor-pointer h-full'>
            <IoMdRemove />
           </div>
           {/* amount */}
@@ -41,7 +44,8 @@ const CartItem = ({ item }) => {
             {amount}
             </div>
           {/* plus icon */}
-          <div className='flex-1 h-full flex justify-center items-center cursor-pointer'>
+          <div onClick={()=> increaseAmount(id)} 
+          className='flex-1 h-full flex justify-center items-center cursor-pointer h-full'>
             <IoMdAdd />
           </div>
         </div>
