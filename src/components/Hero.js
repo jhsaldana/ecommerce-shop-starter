@@ -1,6 +1,6 @@
 import React from 'react';
 //import images
-import WomanImg from '../img/woman_hero.png';
+//import WomanImg from '../img/woman_hero.png';
 //import link
 import { Link } from 'react-router-dom';
 
@@ -24,8 +24,7 @@ const Hero = () => {
         </Link>
       </div>
       {/* image */}
-      <div className='hidden lg:block'>
-        <img src={WomanImg} alt='' />
+     <div className='hidden lg:block'>
       </div>
     </div>
     </section>
